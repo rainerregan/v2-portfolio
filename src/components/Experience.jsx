@@ -1,12 +1,13 @@
-import { OrbitControls, useScroll } from '@react-three/drei'
+import { OrbitControls, Scroll, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import React, { useState } from 'react'
+import { DoubleSide } from 'three'
 
 const camPos = {
-  1: [10,12,53],
-  2: [0,2,1],
-  3: [2,12,42],
-  4: [12,42,0],
+  1: [10, 12, 23],
+  2: [10, 20, 1],
+  3: [2, 12, 20],
+  4: [12, 12, 0],
 }
 
 const Experience = () => {
@@ -16,7 +17,7 @@ const Experience = () => {
   useFrame(() => {
     const offset = scrollData.offset
     console.log(offset);
-    switch(true) {
+    switch (true) {
       case offset >= 0 && offset < 0.25:
         setCurrentCamPos(camPos[1])
         break
@@ -36,17 +37,31 @@ const Experience = () => {
   })
 
   return (
-    <mesh>
+    <group>
       <CameraRig position={currentCamPos} />
-      <boxGeometry />
-      <meshNormalMaterial />
-    </mesh>
+      <mesh>
+        <boxGeometry />
+        <meshNormalMaterial />
+      </mesh>
+      <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 10, 10]}>
+        {/*
+        The thing that gives the mesh its shape
+        In this case the shape is a flat plane
+      */}
+        <planeGeometry />
+        {/*
+        The material gives a mesh its texture or look.
+        In this case, it is just a uniform green
+      */}
+        <meshBasicMaterial color="green" side={DoubleSide} />
+      </mesh>
+    </group>
   )
 }
 
 function CameraRig({ position: [x, y, z] }) {
   useFrame((state) => {
-    state.camera.position.lerp({ x, y, z }, 0.01)
+    state.camera.position.lerp({ x, y, z }, 0.06)
     state.camera.lookAt(0, 0, 0)
   })
 }

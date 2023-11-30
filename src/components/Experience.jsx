@@ -51,7 +51,7 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
         <boxGeometry />
         <meshNormalMaterial />
       </mesh>
-      <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[10, 10, 10]}>
+      <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[100, 100, 100]}>
         {/*
         The thing that gives the mesh its shape
         In this case the shape is a flat plane

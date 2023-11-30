@@ -1,6 +1,6 @@
 import { OrbitControls, Scroll, useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DoubleSide } from 'three'
 
 const camPos = {
@@ -10,31 +10,39 @@ const camPos = {
   4: [12, 12, 0],
 }
 
-const Experience = () => {
+const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
   const [currentCamPos, setCurrentCamPos] = useState(camPos[1])
   const scrollData = useScroll()
 
   useFrame(() => {
     const offset = scrollData.offset
-    console.log(offset);
+
+    setCurrentProgress(offset)
+
     switch (true) {
       case offset >= 0 && offset < 0.25:
-        setCurrentCamPos(camPos[1])
+        setCurrentStage(1)
         break
       case offset > 0.25 && offset <= 0.5:
-        setCurrentCamPos(camPos[2])
+        setCurrentStage(2)
         break
       case offset > 0.5 && offset <= 0.75:
-        setCurrentCamPos(camPos[3])
+        setCurrentStage(3)
         break
       case offset > 0.75 && offset <= 1:
-        setCurrentCamPos(camPos[4])
+        setCurrentStage(4)
         break
       default:
-        setCurrentCamPos(camPos[1])
+        setCurrentStage(1)
         break
     }
   })
+
+  useEffect(() => {
+    if (currentStage !== null) {
+      setCurrentCamPos(camPos[currentStage])
+    }
+  }, [currentStage])
 
   return (
     <group>

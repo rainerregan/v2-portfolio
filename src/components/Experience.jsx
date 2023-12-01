@@ -1,7 +1,8 @@
-import { OrbitControls, Scroll, useScroll } from '@react-three/drei'
-import { useFrame } from '@react-three/fiber'
-import React, { useEffect, useState } from 'react'
+import { Box, Float, Html, OrbitControls, Plane, Scroll, useScroll } from '@react-three/drei'
+import { useFrame, useThree } from '@react-three/fiber'
+import React, { useEffect, useRef, useState } from 'react'
 import { DoubleSide } from 'three'
+import ComputerScreen from './ComputerScreen'
 
 const camPos = {
   1: [10, 12, 23],
@@ -13,6 +14,9 @@ const camPos = {
 const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
   const [currentCamPos, setCurrentCamPos] = useState(camPos[1])
   const scrollData = useScroll()
+
+  // References
+  const planeRef = useRef()
 
   useFrame(() => {
     const offset = scrollData.offset
@@ -47,23 +51,17 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
   return (
     <group>
       <CameraRig position={currentCamPos} />
+
+      <ComputerScreen />
       <mesh>
         <boxGeometry />
         <meshNormalMaterial />
-      </mesh>
-      <mesh position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[100, 100, 100]}>
-        {/*
-        The thing that gives the mesh its shape
-        In this case the shape is a flat plane
-      */}
+      </mesh >
+      <mesh ref={planeRef} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[100, 100, 100]}>
         <planeGeometry />
-        {/*
-        The material gives a mesh its texture or look.
-        In this case, it is just a uniform green
-      */}
         <meshBasicMaterial color="green" side={DoubleSide} />
       </mesh>
-    </group>
+    </group >
   )
 }
 

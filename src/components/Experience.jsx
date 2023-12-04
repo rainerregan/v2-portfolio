@@ -17,6 +17,8 @@ const camPos = {
   4: [-1.3082584039978495, 3.503063336432448, 1.6221033884834786],
   5: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
   6: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
+  7: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
+  8: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
 }
 
 const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
@@ -37,17 +39,29 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
     setCurrentProgress(offset)
 
     switch (true) {
-      case offset >= 0 && offset < 0.25:
+      case offset >= 0 && offset < 0.125:
         setCurrentStage(0)
         break
-      case offset > 0.25 && offset <= 0.5:
+      case offset > 0.125 && offset <= 0.25:
         setCurrentStage(1)
         break
-      case offset > 0.5 && offset <= 0.75:
+      case offset > 0.25 && offset <= 0.375:
         setCurrentStage(2)
         break
-      case offset > 0.75 && offset <= 1:
+      case offset > 0.375 && offset <= 0.5:
         setCurrentStage(3)
+        break
+      case offset > 0.5 && offset <= 0.625:
+        setCurrentStage(4)
+        break
+      case offset > 0.625 && offset <= 0.75:
+        setCurrentStage(5)
+        break
+      case offset > 0.75 && offset <= 0.875:
+        setCurrentStage(6)
+        break
+      case offset > 0.875 && offset <= 1:
+        setCurrentStage(7)
         break
       default:
         setCurrentStage(0)
@@ -68,6 +82,7 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
   return (
     <group>
       <CameraRig position={currentCamPos} look={currentLook} />
+      {/* <OrbitControls target={} /> */}
 
       {/* <ComputerScreen /> */}
       <PortfolioScene scale={[1, 1, 1]} setCurrentLook={setCurrentLook} setCurrentFocus={setCurrentFocus} positionRef={positionRef} />
@@ -84,27 +99,15 @@ function CameraRig({ position: [x, y, z], look }) {
   const gl = useThree((state) => state.gl)
   const scrollData = useScroll()
   const controls = useMemo(() => new CameraControls(camera, gl.domElement), [])
-  useFrame((state, delta) => {
-    const offset = 1 - scrollData.offset
+  controls.touches.one = CameraControls.ACTION.TOUCH_ROTATE;
 
-    state.camera.position.lerp({ x, y, z }, 0.6)
-    // var look = new THREE.Vector3(0, 0, 0)
-    // if (targetObject) {
-    //   if (targetObject?.position?.x === 0 && targetObject?.position?.y === 0 && targetObject?.position?.z === 0) look = targetObject?.parent?.position
-    //   else look = targetObject?.position
-    // }
-    // look.x = Math.sin(state.clock.getElapsedTime() * 2)
-    // state.camera.lookAt(look)
-    // state.camera.updateProjectionMatrix();
+  useFrame((state, delta) => {
+    state.camera.position.lerp({ x: x, y, z }, 0.5)
     if (look) {
       controls.setLookAt(state.camera.position.x, state.camera.position.y, state.camera.position.z, look.x, look.y, look.z, true)
       return controls.update(delta)
     }
   })
-
-  // return (
-  //   <OrbitControls target={look} enableZoom={false} />
-  // )
 }
 
 export default Experience

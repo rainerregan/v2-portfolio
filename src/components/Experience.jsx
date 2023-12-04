@@ -7,7 +7,7 @@ import PortfolioScene from '../models/PortfolioScene'
 import * as THREE from 'three'
 import CameraControls from 'camera-controls'
 
-// CameraControls.install({ THREE })
+CameraControls.install({ THREE })
 
 const camPos = {
   0: [9.038196272515794, 6.043369277943344, -6.958425178983971],
@@ -80,15 +80,14 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
 }
 
 function CameraRig({ position: [x, y, z], look }) {
-  // const camera = useThree((state) => state.camera)
-  // console.log(camera);
-  // const gl = useThree((state) => state.gl)
+  const camera = useThree((state) => state.camera)
+  const gl = useThree((state) => state.gl)
   const scrollData = useScroll()
-  // const controls = useMemo(() => new CameraControls(camera, gl.domElement), [])
+  const controls = useMemo(() => new CameraControls(camera, gl.domElement), [])
   useFrame((state, delta) => {
     const offset = 1 - scrollData.offset
 
-    state.camera.position.lerp({ x, y, z }, 0.06)
+    state.camera.position.lerp({ x, y, z }, 0.6)
     // var look = new THREE.Vector3(0, 0, 0)
     // if (targetObject) {
     //   if (targetObject?.position?.x === 0 && targetObject?.position?.y === 0 && targetObject?.position?.z === 0) look = targetObject?.parent?.position
@@ -96,16 +95,16 @@ function CameraRig({ position: [x, y, z], look }) {
     // }
     // look.x = Math.sin(state.clock.getElapsedTime() * 2)
     // state.camera.lookAt(look)
-    state.camera.updateProjectionMatrix();
-    // if (look) {
-    // controls.setLookAt(state.camera.position.x, state.camera.position.y, state.camera.position.z, look.position.x, look.position.y, -look.position.z, true)
-    // return controls.update(delta)
-    // }
+    // state.camera.updateProjectionMatrix();
+    if (look) {
+      controls.setLookAt(state.camera.position.x, state.camera.position.y, state.camera.position.z, look.x, look.y, look.z, true)
+      return controls.update(delta)
+    }
   })
 
-  return (
-    <OrbitControls target={look} enableZoom={false} />
-  )
+  // return (
+  //   <OrbitControls target={look} enableZoom={false} />
+  // )
 }
 
 export default Experience

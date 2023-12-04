@@ -410,6 +410,7 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props
         position={[1.881, 3.818, 3.377]}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.051, 0.639, 1.339]}
+        ref={ref => positionRef.current[2] = ref}
       >
         <mesh
           castShadow

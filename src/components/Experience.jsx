@@ -11,7 +11,7 @@ import ComputerScreen from '../models/ComputerScreen'
 CameraControls.install({ THREE })
 
 const camPos = {
-  0: [9.038196272515794, 6.043369277943344, -6.958425178983971],
+  0: [6.038196272515794, 4.043369277943344, -2.958425178983971],
   1: [1.343417196396151, 2.486090371342157, 1.5605403102830851],
   2: [2.1640853744370587, 3.635082434267087, 1.6743593348564514],
   3: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
@@ -93,7 +93,7 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
       {/* <OrbitControls target={} /> */}
 
       <ComputerScreen />
-      <PortfolioScene scale={[1, 1, 1]} setCurrentLook={setCurrentLook} setCurrentFocus={setCurrentFocus} positionRef={positionRef} />
+      <PortfolioScene scale={[1, 1, 1]} setStage={setCurrentStage} setCurrentLook={setCurrentLook} setCurrentFocus={setCurrentFocus} positionRef={positionRef} />
       <mesh ref={planeRef} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[100, 100, 100]}>
         <planeGeometry />
         <meshBasicMaterial color="#7da5ff" side={DoubleSide} />

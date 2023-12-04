@@ -7,8 +7,14 @@ import { useGLTF } from "@react-three/drei";
 
 import scene from '../assets/3d/PortfolioScene.glb'
 
-const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props }) => {
+const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, setStage, ...props }) => {
   const { nodes, materials } = useGLTF(scene);
+
+  const onHover = (e) => {
+    console.log(e);
+    e.object.scale = 2
+  }
+
   return (
     <group {...props} dispose={null}>
       <group scale={[3.574, 0.087, 3.574]}>
@@ -273,6 +279,7 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.066, 0.823, 1.725]}
         ref={ref => positionRef.current[3] = ref}
+        onClick={() => setStage(3)}
       >
         <mesh
           castShadow
@@ -423,6 +430,7 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.051, 0.639, 1.339]}
         ref={ref => positionRef.current[2] = ref}
+        onPointerOver={onHover}
       >
         <mesh
           castShadow

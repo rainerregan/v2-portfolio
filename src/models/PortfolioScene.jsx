@@ -7,7 +7,7 @@ import { useGLTF } from "@react-three/drei";
 
 import scene from '../assets/3d/PortfolioScene.glb'
 
-const PortfolioScene = ({ setCurrentLook, setCurrentFocus, ...props }) => {
+const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props }) => {
   const { nodes, materials } = useGLTF(scene);
   return (
     <group {...props} dispose={null}>
@@ -167,7 +167,11 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, ...props }) => {
         position={[1.35, 2.427, 2.632]}
         rotation={[-3.073, 0, 0]}
         scale={[1.086, 0.522, 0.032]}
-        onClick={(e) => setCurrentFocus(e)}
+        // onClick={(e) => setCurrentFocus(e)}
+        ref={ref => {
+          positionRef.current[0] = ref
+          positionRef.current[1] = ref
+        }}
       >
         <mesh
           castShadow
@@ -211,7 +215,6 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, ...props }) => {
         castShadow
         receiveShadow
         geometry={nodes.Sofa.geometry}
-        onClick={(e) => setCurrentFocus(e)}
         material={materials["Material.026"]}
         position={[1.966, 4.853, 7.063]}
         rotation={[0, Math.PI / 2, 0]}
@@ -235,7 +238,6 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, ...props }) => {
         position={[-2.645, 7.067, 7.158]}
         rotation={[-Math.PI, 0, 0]}
         scale={[-0.094, -1.104, -2.305]}
-        onClick={(e) => setCurrentFocus(e)}
       >
         <mesh
           castShadow
@@ -408,7 +410,6 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, ...props }) => {
         position={[1.881, 3.818, 3.377]}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.051, 0.639, 1.339]}
-        onClick={(e) => setCurrentFocus(e)}
       >
         <mesh
           castShadow

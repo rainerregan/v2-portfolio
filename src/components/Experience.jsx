@@ -1,8 +1,7 @@
-import { OrbitControls, useScroll } from '@react-three/drei'
+import { useScroll } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import React, { useEffect, useRef, useState } from 'react'
 import { DoubleSide } from 'three'
-import ComputerScreen from '../models/ComputerScreen'
 import PortfolioScene from '../models/PortfolioScene'
 
 import * as THREE from 'three'
@@ -60,7 +59,7 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
   useEffect(() => {
     // console.log(currentFocus.object.parent.position);
     if (currentFocus?.position?.x === 0 && currentFocus?.position?.y === 0 && currentFocus?.position?.z === 0) {
-      
+
     }
   }, [currentFocus])
 
@@ -82,15 +81,14 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
 function CameraRig({ position: [x, y, z], targetObject }) {
   useFrame((state) => {
     state.camera.position.lerp({ x, y, z }, 0.06)
-    var look = new THREE.Vector3(0,0,0)
+    var look = new THREE.Vector3(0, 0, 0)
     if (targetObject) {
       if (targetObject?.position?.x === 0 && targetObject?.position?.y === 0 && targetObject?.position?.z === 0) look = targetObject?.parent?.position
       else look = targetObject?.position
-    } 
+    }
     state.camera.lookAt(look)
     state.camera.updateProjectionMatrix();
   })
 }
-
 
 export default Experience

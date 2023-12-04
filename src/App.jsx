@@ -14,7 +14,7 @@ const App = () => {
       <Canvas className='w-full h-screen'>
         <Background />
         {/* <color attach='background' args={['#000000', '#ececec']} /> */}
-        <ScrollControls pages={8} damping={0.15}>
+        <ScrollControls pages={15} damping={0.15}>
           <Experience
             currentStage={currentStage}
             setCurrentStage={setCurrentStage}

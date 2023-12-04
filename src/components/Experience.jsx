@@ -11,14 +11,15 @@ CameraControls.install({ THREE })
 
 const camPos = {
   0: [9.038196272515794, 6.043369277943344, -6.958425178983971],
-  1: [1.3273417196396151, 2.486090371342157, 1.1605403102830851],
+  1: [1.343417196396151, 2.486090371342157, 1.5605403102830851],
   2: [2.1640853744370587, 3.635082434267087, 1.6743593348564514],
   3: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
   4: [-1.3082584039978495, 3.503063336432448, 1.6221033884834786],
   5: [0.114, 7.536, 7.671],
-  6: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
-  7: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
-  8: [-1.2558498488094316, 3.4997121815605867, 1.5945044469891447],
+  6: [0.145, 7.067, 7.158],
+  7: [-0.358, 13.028, 14.442],
+  8: [-8.753, 19.442, 13.605],
+  9: [-8.753, 19.442, 13.605],
 }
 
 const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
@@ -39,29 +40,35 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
     setCurrentProgress(offset)
 
     switch (true) {
-      case offset >= 0 && offset < 0.125:
+      case offset >= 0 && offset < 0.1:
         setCurrentStage(0)
         break
-      case offset > 0.125 && offset <= 0.25:
+      case offset > 0.1 && offset <= 0.2:
         setCurrentStage(1)
         break
-      case offset > 0.25 && offset <= 0.375:
+      case offset > 0.2 && offset <= 0.3:
         setCurrentStage(2)
         break
-      case offset > 0.375 && offset <= 0.5:
+      case offset > 0.3 && offset <= 0.4:
         setCurrentStage(3)
         break
-      case offset > 0.5 && offset <= 0.625:
+      case offset > 0.4 && offset <= 0.5:
         setCurrentStage(4)
         break
-      case offset > 0.625 && offset <= 0.75:
+      case offset > 0.5 && offset <= 0.6:
         setCurrentStage(5)
         break
-      case offset > 0.75 && offset <= 0.875:
+      case offset > 0.6 && offset <= 0.7:
         setCurrentStage(6)
         break
-      case offset > 0.875 && offset <= 1:
+      case offset > 0.7 && offset <= 0.8:
         setCurrentStage(7)
+        break
+      case offset > 0.8 && offset <= 0.9:
+        setCurrentStage(8)
+        break
+      case offset > 0.9 && offset <= 1:
+        setCurrentStage(9)
         break
       default:
         setCurrentStage(0)

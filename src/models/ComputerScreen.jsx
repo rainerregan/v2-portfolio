@@ -6,7 +6,11 @@ const ComputerScreen = () => {
   const { gl, viewport } = useThree()
 
   return (
-    <Html portal={{ current: gl.domElement.parentNode }} position={[0, 10, 0]} fullscreen castShadow receiveShadow occlude="blending" transform scale={[0.5, 0.5, 0.5]}>
+    <Html portal={{ current: gl.domElement.parentNode }}
+      position={[1.35, 2.427, 2.605]}
+      scale={[0.0377, 0.0377, 0.0377]}
+      rotation={[0.07, 3.14122, 0]}
+      fullscreen castShadow receiveShadow occlude="blending" transform >
       <iframe title="embed" width={1920} height={1080} src="https://exacode.io/" frameBorder={0} />
     </Html>
   )

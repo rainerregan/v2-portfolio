@@ -166,7 +166,7 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props
       <group
         position={[1.35, 2.427, 2.632]}
         rotation={[-3.073, 0, 0]}
-        scale={[1.086, 0.522, 0.032]}
+        scale={[0.926, 0.522, 0.032]}
         // onClick={(e) => setCurrentFocus(e)}
         ref={ref => {
           positionRef.current[0] = ref

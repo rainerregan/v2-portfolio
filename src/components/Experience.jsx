@@ -6,6 +6,7 @@ import PortfolioScene from '../models/PortfolioScene'
 
 import * as THREE from 'three'
 import CameraControls from 'camera-controls'
+import ComputerScreen from '../models/ComputerScreen'
 
 CameraControls.install({ THREE })
 
@@ -91,7 +92,7 @@ const Experience = ({ currentStage, setCurrentStage, setCurrentProgress }) => {
       <CameraRig position={currentCamPos} look={currentLook} />
       {/* <OrbitControls target={} /> */}
 
-      {/* <ComputerScreen /> */}
+      <ComputerScreen />
       <PortfolioScene scale={[1, 1, 1]} setCurrentLook={setCurrentLook} setCurrentFocus={setCurrentFocus} positionRef={positionRef} />
       <mesh ref={planeRef} position={[0, 0, 0]} rotation={[Math.PI / 2, 0, 0]} scale={[100, 100, 100]}>
         <planeGeometry />

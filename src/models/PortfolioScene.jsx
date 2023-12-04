@@ -253,7 +253,7 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props
         />
       </group>
       <group position={[-3.364, 3.322, 1.259]} scale={[0.069, 0.857, 1.796]}
-      ref={ref => positionRef.current[4] = ref}>
+        ref={ref => positionRef.current[4] = ref}>
         <mesh
           castShadow
           receiveShadow
@@ -290,6 +290,7 @@ const PortfolioScene = ({ setCurrentLook, setCurrentFocus, positionRef, ...props
         position={[0.114, 7.536, 10.671]}
         rotation={[0, Math.PI / 2, 0]}
         scale={[0.066, 1.387, 2.742]}
+        ref={ref => positionRef.current[5] = ref}
       >
         <mesh
           castShadow
